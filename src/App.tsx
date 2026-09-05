@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 
@@ -25,28 +26,30 @@ const Loading = () => (
 );
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/destinations" element={<Destinations />} />
-            <Route path="/destinations/:continent" element={<ContinentPage />} />
-            <Route path="/destinations/:continent/:country" element={<CountryPage />} />
-            <Route path="/article/:articleId" element={<ArticlePage />} />
-            <Route path="/routes" element={<RoutesPage />} />
-            <Route path="/routes/:routeId" element={<RouteDetailPage />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/shop/:productId" element={<ProductDetailPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/destinations" element={<Destinations />} />
+              <Route path="/destinations/:continent" element={<ContinentPage />} />
+              <Route path="/destinations/:continent/:country" element={<CountryPage />} />
+              <Route path="/article/:articleId" element={<ArticlePage />} />
+              <Route path="/routes" element={<RoutesPage />} />
+              <Route path="/routes/:routeId" element={<RouteDetailPage />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/shop/:productId" element={<ProductDetailPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

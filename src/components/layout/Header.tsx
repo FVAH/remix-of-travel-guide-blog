@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Search, Menu, X, ShoppingCart, ChevronDown, MapPin, FileText } from "lucide-react";
 import { continents, getAllArticles, type Article, type Country, type Continent } from "@/data/destinations";
 import { motion, AnimatePresence } from "framer-motion";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -116,6 +117,7 @@ const Header = () => {
           <button className="p-2 text-foreground/60 hover:text-foreground transition relative ml-2" aria-label="Cart">
             <ShoppingCart className="w-4 h-4" />
           </button>
+          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 text-foreground/60"
